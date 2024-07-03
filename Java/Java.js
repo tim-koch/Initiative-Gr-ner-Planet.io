@@ -1,4 +1,28 @@
 $(document).ready(function() {
+    console.log('Document is ready');
+
+    // Click event for the menu button
+    $('#menu-toggle').click(function() {
+        console.log('Menu button clicked');
+        $('nav ul').toggleClass('show');
+    });
+
+    // Hover effect for navigation items with dropdowns
+    $('nav ul li').hover(
+        function () {
+            $(this).children('ul').stop().slideDown(500);
+        },
+        function () {
+            $(this).children('ul').stop().slideUp(500);
+        }
+    );
+
+    // Check the direction and adjust the menu alignment
+    if ($('html').attr('dir') === 'rtl') {
+        $('nav ul.nav-list').addClass('rtl');
+    }
+    
+    // Initialize DataTable if not already initialized
     if (!$.fn.DataTable.isDataTable('#emissions-table')) {
         $('#emissions-table').DataTable({
             "pageLength": 10,
@@ -18,26 +42,9 @@ $(document).ready(function() {
             }
         });
     }
-
-    $('#menu-toggle').click(function() {
-        $('nav ul').toggleClass('show');
-    });
-
-    $('nav ul li').hover(
-        function () {
-            $(this).children('ul').stop().slideDown(500);
-        },
-        function () {
-            $(this).children('ul').stop().slideUp(500);
-        }
-    );
-
-    // Check the direction and adjust the menu alignment
-    if ($('html').attr('dir') === 'rtl') {
-        $('nav ul.nav-list').addClass('rtl');
-    }
 });
 
+// Function to escape HTML
 function escapeHTML(str) {
     return str.replace(/&/g, "&amp;")
               .replace(/</g, "&lt;")
