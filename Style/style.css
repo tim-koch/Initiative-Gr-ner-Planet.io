@@ -1,4 +1,4 @@
-/* General styles */
+
 body {
     font-family: 'Lato', sans-serif;
     margin: 0;
@@ -7,7 +7,7 @@ body {
     line-height: 1.6;
 }
 
-/* Header styles */
+
 header {
     background: #c5a909;
     color: #fff;
@@ -42,7 +42,7 @@ header p {
     font-size: 18px;
 }
 
-/* Responsive Header styles */
+
 @media screen and (max-width: 768px) {
     .header-container {
         flex-direction: column;
@@ -62,7 +62,7 @@ header p {
     }
 }
 
-/* Navigation styles */
+
 nav {
     width: 100%;
     background: #ffffff;
@@ -97,7 +97,7 @@ nav ul li a {
     transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-/* Hover Effect */
+
 nav ul li a:hover {
     color: #fff;
     background-color: #c5a909;
@@ -113,7 +113,7 @@ nav ul li a:hover {
     cursor: pointer;
 }
 
-/* Responsive Navigation styles */
+
 @media screen and (max-width: 768px) {
     #menu-toggle {
         display: block;
@@ -136,7 +136,7 @@ nav ul li a:hover {
     }
 }
 
-/* Main content styles */
+
 main {
     padding: 20px;
     padding-top: 20px;
@@ -162,7 +162,7 @@ ul li {
     margin-bottom: 10px;
 }
 
-/* Team member styles */
+
 .team-members {
     display: flex;
     flex-wrap: wrap;
@@ -183,7 +183,7 @@ ul li {
     border-radius: 50%;
 }
 
-/* Form styles */
+
 form {
     max-width: 600px;
     margin: 0 auto;
@@ -215,7 +215,7 @@ form button:hover {
     background: #af970e;
 }
 
-/* Footer styles */
+
 footer {
     background: #2c2c2c;
     color: #fff;
@@ -294,7 +294,7 @@ footer {
     font-size: 14px;
 }
 
-/* Responsive Footer styles */
+
 @media screen and (max-width: 768px) {
     .footer-container {
         flex-direction: column;
@@ -304,4 +304,24 @@ footer {
     .social-media {
         justify-content: center;
     }
+}
+
+
+.dataTables_wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    text-align: left;
+}
+
+.dataTables_wrapper .dataTables_length {
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    display: inline-block;
+    margin: 10px 0;
 }

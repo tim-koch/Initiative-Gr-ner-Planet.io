@@ -1,13 +1,12 @@
 $(document).ready(function() {
     console.log('Document is ready');
 
-    // Click event for the menu button
+
     $('#menu-toggle').click(function() {
         console.log('Menu button clicked');
         $('nav ul').toggleClass('show');
     });
 
-    // Hover effect for navigation items with dropdowns
     $('nav ul li').hover(
         function () {
             $(this).children('ul').stop().slideDown(500);
@@ -17,12 +16,10 @@ $(document).ready(function() {
         }
     );
 
-    // Check the direction and adjust the menu alignment
     if ($('html').attr('dir') === 'rtl') {
         $('nav ul.nav-list').addClass('rtl');
     }
 
-    // Initialize DataTable
     var table = $('#emissions-table').DataTable({
         "pageLength": 10,
         "language": {
@@ -41,9 +38,8 @@ $(document).ready(function() {
         }
     });
 
-    // Load CO2 emissions data from JSON file
     $.getJSON('data/co2-emissions.json', function(data) {
-        console.log('Data loaded:', data); // Log data for debugging
+        console.log('Data loaded:', data);
         data.forEach(function(item) {
             table.row.add([
                 item.land,
@@ -51,9 +47,9 @@ $(document).ready(function() {
                 item.co2Emissionen
             ]).draw(false);
         });
-        console.log('Table updated'); // Log when the table is updated
+        console.log('Table updated'); 
     }).fail(function(jqxhr, textStatus, error) {
         var err = textStatus + ", " + error;
-        console.log("Request Failed: " + err); // Log errors
+        console.log("Request Failed: " + err); 
     });
 });
