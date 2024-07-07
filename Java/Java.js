@@ -21,34 +21,39 @@ $(document).ready(function() {
     if ($('html').attr('dir') === 'rtl') {
         $('nav ul.nav-list').addClass('rtl');
     }
-    
-    // Initialize DataTable if not already initialized
-    if (!$.fn.DataTable.isDataTable('#emissions-table')) {
-        $('#emissions-table').DataTable({
-            "pageLength": 10,
-            "language": {
-                "lengthMenu": "Zeige _MENU_ Einträge pro Seite",
-                "zeroRecords": "Keine Einträge gefunden",
-                "info": "Zeige Seite _PAGE_ von _PAGES_",
-                "infoEmpty": "Keine Einträge verfügbar",
-                "infoFiltered": "(gefiltert von _MAX_ Einträgen)",
-                "search": "Suche:",
-                "paginate": {
-                    "first": "Erste",
-                    "last": "Letzte",
-                    "next": "Nächste",
-                    "previous": "Vorherige"
-                }
-            }
-        });
-    }
-});
 
-// Function to escape HTML
-function escapeHTML(str) {
-    return str.replace(/&/g, "&amp;")
-              .replace(/</g, "&lt;")
-              .replace(/>/g, "&gt;")
-              .replace(/"/g, "&quot;")
-              .replace(/'/g, "&#039;");
-}
+    // Initialize DataTable
+    var table = $('#emissions-table').DataTable({
+        "pageLength": 10,
+        "language": {
+            "lengthMenu": "Zeige _MENU_ Einträge pro Seite",
+            "zeroRecords": "Keine Einträge gefunden",
+            "info": "Zeige Seite _PAGE_ von _PAGES_",
+            "infoEmpty": "Keine Einträge verfügbar",
+            "infoFiltered": "(gefiltert von _MAX_ Einträgen)",
+            "search": "Suche:",
+            "paginate": {
+                "first": "Erste",
+                "last": "Letzte",
+                "next": "Nächste",
+                "previous": "Vorherige"
+            }
+        }
+    });
+
+    // Load CO2 emissions data from JSON file
+    $.getJSON('data/co2-emissions.json', function(data) {
+        console.log('Data loaded:', data); // Log data for debugging
+        data.forEach(function(item) {
+            table.row.add([
+                item.land,
+                item.unternehmen,
+                item.co2Emissionen
+            ]).draw(false);
+        });
+        console.log('Table updated'); // Log when the table is updated
+    }).fail(function(jqxhr, textStatus, error) {
+        var err = textStatus + ", " + error;
+        console.log("Request Failed: " + err); // Log errors
+    });
+});
