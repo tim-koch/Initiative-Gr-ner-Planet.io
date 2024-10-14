@@ -58,7 +58,10 @@ $(document).ready(function() {
     });
 
     function sanitizeInput(input) {
-        return input.replace(/<[^>]*>?/gm, '');
+        if (typeof input === 'string') {
+            return input.replace(/<[^>]*>?/gm, '');
+        }
+        return input;  // Falls es kein String ist, gib das ursprüngliche Eingabeargument zurück.
     }
     
     $('#input-field').on('input', function() {
