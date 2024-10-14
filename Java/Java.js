@@ -40,7 +40,7 @@ $(document).ready(function() {
     $.getJSON('data/co2-emissions.json', function(data) {
         console.log('Data loaded:', data);
         data.forEach(function(item) {
-            // Sanitize data before adding to the table
+          
             var sanitizedLand = sanitizeInput(item.land);
             var sanitizedUnternehmen = sanitizeInput(item.unternehmen);
             var sanitizedCo2Emissionen = sanitizeInput(item.co2Emissionen);
@@ -61,7 +61,7 @@ $(document).ready(function() {
         if (typeof input === 'string') {
             return input.replace(/<[^>]*>?/gm, '');
         }
-        return input;  // Falls es kein String ist, gib das ursprüngliche Eingabeargument zurück.
+        return input; 
     }
     
     $('#input-field').on('input', function() {
