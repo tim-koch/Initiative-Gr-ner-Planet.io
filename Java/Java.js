@@ -40,7 +40,6 @@ $(document).ready(function() {
     $.getJSON('data/co2-emissions.json', function(data) {
         console.log('Data loaded:', data);
         data.forEach(function(item) {
-          
             var sanitizedLand = sanitizeInput(item.land);
             var sanitizedUnternehmen = sanitizeInput(item.unternehmen);
             var sanitizedCo2Emissionen = sanitizeInput(item.co2Emissionen);
